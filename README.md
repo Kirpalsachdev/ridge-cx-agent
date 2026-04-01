@@ -1,3 +1,8 @@
+## Author
+
+**Kirpal Sachdev**
+[LinkedIn](https://linkedin.com/in/kirpalsachdev) · Singapore
+
 # Ridge — AI Customer Experience Agent
 
 **An n8n-based agentic CX solution for Horizon Outdoors, a fictional premium outdoor gear brand.**
@@ -127,10 +132,7 @@ This prototype maps directly to enterprise agent platform capabilities:
 - **Database:** PostgreSQL
 - **Memory:** n8n Window Buffer Memory
 
-## Author
 
-**Kirpal Sachdev**
-[LinkedIn](https://linkedin.com/in/kirpalsachdev) · Singapore
 
 ---
 
