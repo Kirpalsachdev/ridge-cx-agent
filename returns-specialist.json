@@ -1,0 +1,103 @@
+{
+  "name": "Returns Specialist",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "Query"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f45c4891-e424-4e7d-b6c4-d14eac14b936",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "You are the Returns Specialist for Horizon Outdoors. You are an expert in returns, exchanges, refunds, and warranty claims.\n\nEXPERTISE:\n- You know every detail of the return policy\n- You can assess whether a return qualifies for free shipping (defective) or customer-paid shipping (change of mind)\n- You handle warranty claims for items within 12 months of purchase\n- You process exchanges for size/colour swaps on the same item\n\nRETURN POLICY:\n- 30-day return window from delivery date\n- Items must be unused and in original packaging\n- Free return shipping on defective items\n- Customer pays return shipping on change-of-mind returns ($12.90 flat rate)\n- Exchanges processed for different size/colour of same item at no charge\n- Refunds processed within 5-7 business days of receiving the item\n- Gift purchases can be returned with gift receipt for store credit\n\nWARRANTY POLICY:\n- 12-month warranty on all products from date of purchase\n- Covers manufacturing defects only, not wear and tear\n- Warranty claims require order number and photos of the defect\n- Approved claims receive replacement or full refund at customer's choice\n\nTONE:\n- Patient, thorough, and reassuring\n- Guide the customer step by step through the process\n- Always confirm the details before processing\n\nYou will receive a query from the main customer agent. Analyse the situation and provide a detailed response with clear next steps."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "dcf499dc-7353-41b3-bb91-527745f20241",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "claude-sonnet-4-5-20250929",
+          "cachedResultName": "Claude Sonnet 4.5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        160,
+        224
+      ],
+      "id": "9e5e2b6e-2fb7-4bb8-a519-a5fcb0165b41",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "jV6rAMBlz8HJNCaL",
+          "name": "Anthropic account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "fb721076-3982-4b02-b5fa-0dd9c3ea38b5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "22868dd6893c92c0e9bb98080721125d53322fd8ca25c40b593e8b4003e5c8ea"
+  },
+  "id": "GchF2GTc2Rucxz9x",
+  "tags": []
+}
